@@ -17,12 +17,41 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
+    "module": "es2020",
     "lib": [
-      "ES2022",
+      "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@models/*": [
+        "./src/app/models/*"
+      ],
+      "@shared/*": [
+        "src/app/modules/shared/*"
+      ],
+      "@auth/*": [
+        "src/app/modules/auth/*"
+      ],
+      "@boards/*": [
+        "src/app/modules/boards/*"
+      ],
+      "@environments/*": [
+        "./src/environments/*"
+      ],
+      "@guards/*": [
+        "./src/app/guards/*"
+      ],
+      "@interceptors/*": [
+        "./src/app/interceptors/*"
+      ],
+      "@services/*": [
+        "./src/app/services/*"
+      ],
+      "@utils/*": [
+        "./src/app/utils/*"
+      ]
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
