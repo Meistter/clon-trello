@@ -17,8 +17,7 @@ import { CardColorComponent } from '@shared/components/card-color/card-color.com
   declarations: [
     BoardsComponent,
     BoardComponent,
-    TodoDialogComponent, 
-    CardColorComponent
+    TodoDialogComponent
   ],
   imports: [
     CommonModule,

@@ -59,9 +59,16 @@
   <div class="w-full">
     <h1 class="text-lg font-bold mb-4"><fa-icon [icon]="faClock"></fa-icon> Recently viewed</h1>
     <div class="grid grid-cols-4 gap-4">
-      <a [routerLink]="['/app/boards',board.id]" class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24" *ngFor="let board of boards">Board 1</a>
-      <a  [routerLink]="['/app/boards',board.id]"></a>
-      <card-color></card-color>
+      
+      <!-- ! BUENISIMO!!! podemos poner contenido dentro de card-color ya que le definimos en su html un ng-content, de esta forma aqui le podemos meter contenido dentro al usarla -->
+      
+        <a [routerLink]="['/app/boards',board.id]"  *ngFor="let board of boards">
+          <app-card-color [color]="board.backgroundColor">
+        {{board.title}}
+           </app-card-color>
+        </a>
+     
+      <!-- <a [routerLink]="['/app/boards',board.id]" class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24" *ngFor="let board of boards">Board 1</a> -->
     </div>
   </div>
 </div>

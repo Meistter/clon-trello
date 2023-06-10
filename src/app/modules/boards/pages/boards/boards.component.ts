@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faBox, faWaveSquare, faClock, faAngleUp, faAngleDown, faHeart, faBorderAll, faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
 import { MeService } from '@services/me.service';
@@ -8,7 +8,7 @@ import { Board } from '@models/board.model';
   selector: 'app-boards',
   templateUrl: './boards.component.html'
 })
-export class BoardsComponent {
+export class BoardsComponent implements OnInit{
 
   boards: Board[] = []
   faTrello = faTrello;
@@ -24,7 +24,7 @@ export class BoardsComponent {
 
   constructor( private meService: MeService) { }
 
-  ngOnInit(){
+  ngOnInit() : void{
     this.getMeBoards()
   }
   getMeBoards(){
