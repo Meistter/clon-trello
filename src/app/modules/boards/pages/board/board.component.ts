@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToDo, Column } from '@models/todo.model';
 import { BoardService } from '@services/board.service';
 import { Board } from '@models/board.model';
+import { Card } from '@models/card.model';
 
 @Component({
   selector: 'app-board',
@@ -26,39 +27,7 @@ import { Board } from '@models/board.model';
   ],
 })
 export class BoardComponent implements OnInit{
-  columns: Column[] = [
-    {
-      title: 'ToDo',
-      todos: [
-        {
-          id: '1',
-          title: 'Make dishes',
-        },
-        {
-          id: '2',
-          title: 'Buy a unicorn',
-        },
-      ],
-    },
-    {
-      title: 'Doing',
-      todos: [
-        {
-          id: '3',
-          title: 'Watch Angular Path in Platzi',
-        },
-      ],
-    },
-    {
-      title: 'Done',
-      todos: [
-        {
-          id: '4',
-          title: 'Play video games',
-        },
-      ],
-    },
-  ];
+ 
 
   constructor(private dialog: Dialog, private route: ActivatedRoute, private boardService:BoardService) {}
 
@@ -74,7 +43,7 @@ export class BoardComponent implements OnInit{
       }
     })
   }
-  drop(event: CdkDragDrop<ToDo[]>) {
+  drop(event: CdkDragDrop<Card[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -92,10 +61,10 @@ export class BoardComponent implements OnInit{
   }
 
   addColumn() {
-    this.columns.push({
-      title: 'New Column',
-      todos: [],
-    });
+    // this.columns.push({
+    //   title: 'New Column',
+    //   todos: [],
+    // });
   }
 
   openDialog(todo: ToDo) {

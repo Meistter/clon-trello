@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { COLORS } from '@models/color.model';
+import { Color, COLORS } from '@models/color.model';
 
 @Component({
   selector: 'app-card-color',
@@ -7,7 +7,7 @@ import { COLORS } from '@models/color.model';
 })
 export class CardColorComponent {
 
-  @Input() color: 'sky' | 'yellow' | 'green' | 'red' | 'violet' | 'gray' = 'sky'
+  @Input() color: Color = 'sky'
 
   mapColors = COLORS
 
