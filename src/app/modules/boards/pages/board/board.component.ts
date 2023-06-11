@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -6,8 +6,10 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Dialog } from '@angular/cdk/dialog';
 import { TodoDialogComponent } from '@boards/components/todo-dialog/todo-dialog.component';
-
+import { ActivatedRoute } from '@angular/router';
 import { ToDo, Column } from '@models/todo.model';
+import { BoardService } from '@services/board.service';
+import { Board } from '@models/board.model';
 
 @Component({
   selector: 'app-board',
@@ -23,7 +25,7 @@ import { ToDo, Column } from '@models/todo.model';
     `,
   ],
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit{
   columns: Column[] = [
     {
       title: 'ToDo',
@@ -58,8 +60,20 @@ export class BoardComponent {
     },
   ];
 
-  constructor(private dialog: Dialog) {}
+  constructor(private dialog: Dialog, private route: ActivatedRoute, private boardService:BoardService) {}
 
+  // board: Board | null = null
+  board : any = null
+// mala practica
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id')      
+      if(id){
+        this.getBoard(id)
+      }
+    })
+  }
   drop(event: CdkDragDrop<ToDo[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -97,5 +111,9 @@ export class BoardComponent {
         console.log(output);
       }
     });
+  }
+  private getBoard(id: string){
+    this.boardService.getBoards(id).subscribe(board =>{this.board = board, console.log(board);
+    })
   }
 }
