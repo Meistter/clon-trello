@@ -58,6 +58,11 @@ export class BoardComponent implements OnInit{
         event.currentIndex
       );
     }
+    //Para implementar el algoritmo de trelo necesitamos averiguar 3 cosas, cuando la card es nueva y cuando es movida al top, al medio o abajo
+    const rsp = this.boardService.getPosition(event.container.data, event.currentIndex)
+    console.log(rsp);
+    
+    
   }
 
   addColumn() {
