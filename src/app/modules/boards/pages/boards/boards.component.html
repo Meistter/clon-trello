@@ -65,6 +65,7 @@
         <a [routerLink]="['/app/boards',board.id]"  *ngFor="let board of boards">
           <app-card-color [color]="board.backgroundColor">
         {{board.title}}
+      
            </app-card-color>
         </a>
      
