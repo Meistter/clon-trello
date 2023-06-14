@@ -12,6 +12,6 @@ export interface UpdateCardDTO {
     title?: string;
     description?: string;
     position?: number;
-    listId: string;
-    boardId: string;
+    listId?: string;
+    boardId?: string;
 }
