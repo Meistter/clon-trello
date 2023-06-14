@@ -11,6 +11,7 @@ import { ToDo, Column } from '@models/todo.model';
 import { BoardService } from '@services/board.service';
 import { Board } from '@models/board.model';
 import { Card } from '@models/card.model';
+import { CardsService } from '@services/cards.service';
 
 @Component({
   selector: 'app-board',
@@ -29,7 +30,8 @@ import { Card } from '@models/card.model';
 export class BoardComponent implements OnInit{
  
 
-  constructor(private dialog: Dialog, private route: ActivatedRoute, private boardService:BoardService) {}
+  constructor(private dialog: Dialog, private route: ActivatedRoute, private boardService:BoardService,
+    private cardService: CardsService) {}
 
   // board: Board | null = null
   board : any = null
@@ -60,7 +62,8 @@ export class BoardComponent implements OnInit{
     }
     //Para implementar el algoritmo de trelo necesitamos averiguar 3 cosas, cuando la card es nueva y cuando es movida al top, al medio o abajo
     const rsp = this.boardService.getPosition(event.container.data, event.currentIndex)
-    console.log(rsp);
+    const card = event.container.data[event.currentIndex]
+    this.updateCard(card,rsp)
     
     
   }
@@ -88,6 +91,14 @@ export class BoardComponent implements OnInit{
   }
   private getBoard(id: string){
     this.boardService.getBoards(id).subscribe(board =>{this.board = board, console.log(board);
+    })
+  }
+  private updateCard(card : Card, position: number){
+    this.cardService.update(card.id, {
+      position,
+      listId: '',
+      boardId: ''
+    }).subscribe((cardUpdate)=>{console.log(cardUpdate);
     })
   }
 }
